@@ -16,7 +16,7 @@ body {
 
 .wrapper {
   width: 100%;
-  padding: 20px 10px;
+  padding: 24px 12px;
 }
 
 .container {
@@ -31,7 +31,7 @@ body {
 /* HEADER */
 .header {
   background: linear-gradient(135deg, #00254d, #004b99);
-  padding: 22px 20px;
+  padding: 24px 20px 20px;
   text-align: center;
 }
 
@@ -39,11 +39,11 @@ body {
   width: 160px;
   max-width: 70%;
   display: block;
-  margin: 0 auto 6px;
+  margin: 0 auto 8px;
 }
 
 .header .tagline {
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #d0e4ff;
@@ -71,7 +71,7 @@ body {
 
 /* CONTENT */
 .content {
-  padding: 22px 22px 10px;
+  padding: 22px 22px 14px;
 }
 
 .section-title {
@@ -79,25 +79,32 @@ body {
   color: #003366;
   border-bottom: 2px solid #FF8C00;
   padding-bottom: 5px;
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 }
 
 .text {
   font-size: 14px;
   line-height: 1.6;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   color: #444444;
 }
 
 /* RATING */
+.rating-label {
+  font-size: 13px;
+  color: #555555;
+  margin-bottom: 6px;
+}
+
 .stars {
   font-size: 26px;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .stars span {
   cursor: pointer;
   color: #d1d5db;
+  margin-right: 2px;
 }
 
 .stars span.active {
@@ -108,11 +115,17 @@ body {
 textarea {
   width: 100%;
   min-height: 120px;
-  padding: 10px;
+  padding: 12px;
   font-size: 14px;
   border: 1px solid #dddddd;
   border-radius: 6px;
   resize: vertical;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #003366;
 }
 
 /* ACTIONS */
@@ -130,6 +143,10 @@ textarea {
   cursor: pointer;
 }
 
+.btn:hover {
+  opacity: 0.95;
+}
+
 .google {
   background-color: #1a73e8;
   color: #ffffff;
@@ -140,11 +157,19 @@ textarea {
   color: #ffffff;
 }
 
-/* NOTE */
-.note {
-  margin-top: 14px;
-  font-size: 12px;
-  color: #666666;
+/* HIGHLIGHT NOTE */
+.note-box {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background-color: #fff7e6;
+  border: 1px solid #ffe0a3;
+  border-radius: 6px;
+}
+
+.note-box p {
+  margin: 0;
+  font-size: 13px;
+  color: #663c00;
   line-height: 1.5;
 }
 
@@ -164,7 +189,7 @@ textarea {
 <div class="wrapper">
   <div class="container">
 
-    <!-- Header with Logo -->
+    <!-- Header -->
     <div class="header">
       <img src="https://i.imgur.com/40sl7Sv.png" alt="Discovery Hike">
       <div class="tagline">Trek & Expedition Experiences</div>
@@ -182,10 +207,10 @@ textarea {
       <div class="section-title">Share your experience</div>
 
       <div class="text">
-        Thank you for choosing <strong>Discovery Hike</strong> for your adventure.
-        Your feedback is invaluable to us— it helps fellow trekkers/expeditioners plan confidently and supports our team in delivering even better experiences.
+        Thank you for choosing <strong>Discovery Hike</strong> for your adventure. Your feedback is invaluable to us— it helps fellow trekkers/expeditioners plan confidently and supports our team in delivering even better experiences.
       </div>
 
+      <div class="rating-label">Please rate your overall experience</div>
       <div class="stars">
         <span onclick="setRating(1)">★</span>
         <span onclick="setRating(2)">★</span>
@@ -198,16 +223,19 @@ textarea {
 
       <div class="actions">
         <button class="btn google" onclick="postReview('google')">
-          Submit on Google Maps
+          Submit Review on Google Maps
         </button>
         <button class="btn trip" onclick="postReview('trip')">
-          Submit on Tripadvisor
+          Submit Review on Tripadvisor
         </button>
       </div>
 
-      <div class="note">
-        Your review text will be copied automatically.<br>
-        Please paste it on the review page and submit.
+      <div class="note-box">
+        <p>
+          <strong>Important:</strong><br>
+          Your review text will be copied automatically.<br>
+          Please paste it on the review page and submit.
+        </p>
       </div>
 
     </div>
