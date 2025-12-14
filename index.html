@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share Your Experience – Discovery Hike</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333333;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 20px 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.header {
+  background: linear-gradient(135deg, #00254d, #004b99);
+  padding: 22px 20px;
+  text-align: center;
+}
+
+.header img {
+  width: 160px;
+  max-width: 70%;
+  display: block;
+  margin: 0 auto 6px;
+}
+
+.header .tagline {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #d0e4ff;
+}
+
+/* BANNER */
+.banner {
+  background-color: #003366;
+  padding: 14px 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.banner h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.banner p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* CONTENT */
+.content {
+  padding: 22px 22px 10px;
+}
+
+.section-title {
+  font-size: 16px;
+  color: #003366;
+  border-bottom: 2px solid #FF8C00;
+  padding-bottom: 5px;
+  margin: 0 0 10px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  color: #444444;
+}
+
+/* RATING */
+.stars {
+  font-size: 26px;
+  margin-bottom: 14px;
+}
+
+.stars span {
+  cursor: pointer;
+  color: #d1d5db;
+}
+
+.stars span.active {
+  color: #FF8C00;
+}
+
+/* INPUT */
+textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  resize: vertical;
+}
+
+/* ACTIONS */
+.actions {
+  margin-top: 18px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.google {
+  background-color: #1a73e8;
+  color: #ffffff;
+}
+
+.trip {
+  background-color: #2da44e;
+  color: #ffffff;
+}
+
+/* NOTE */
+.note {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #666666;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #003366;
+  color: #ffffff;
+  padding: 14px 22px;
+  font-size: 12px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="container">
+
+    <!-- Header with Logo -->
+    <div class="header">
+      <img src="https://i.imgur.com/40sl7Sv.png" alt="Discovery Hike">
+      <div class="tagline">Trek & Expedition Experiences</div>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+      <h2>We’d love your feedback</h2>
+      <p>Your experience matters to us</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+      <div class="section-title">Share your experience</div>
+
+      <div class="text">
+        Thank you for trekking with <strong>Discovery Hike</strong>.
+        Your honest review helps fellow trekkers make informed decisions and
+        supports our team in improving our services.
+      </div>
+
+      <div class="stars">
+        <span onclick="setRating(1)">★</span>
+        <span onclick="setRating(2)">★</span>
+        <span onclick="setRating(3)">★</span>
+        <span onclick="setRating(4)">★</span>
+        <span onclick="setRating(5)">★</span>
+      </div>
+
+      <textarea id="reviewText" placeholder="Please share your experience with Discovery Hike."></textarea>
+
+      <div class="actions">
+        <button class="btn google" onclick="postReview('google')">
+          Submit on Google Maps
+        </button>
+        <button class="btn trip" onclick="postReview('trip')">
+          Submit on Tripadvisor
+        </button>
+      </div>
+
+      <div class="note">
+        Your review text will be copied automatically.<br>
+        Please paste it on the review page and submit.
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      © Discovery Hike • All rights reserved
+    </div>
+
+  </div>
+</div>
+
+<script>
+let rating = 0;
+
+function setRating(r) {
+  rating = r;
+  document.querySelectorAll('.stars span').forEach((s, i) => {
+    s.classList.toggle('active', i < r);
+  });
+}
+
+function postReview(platform) {
+  const text = document.getElementById("reviewText").value.trim();
+  if (!text) {
+    alert("Please write your review before continuing.");
+    return;
+  }
+
+  const finalText = rating
+    ? `Rating: ${rating}/5\n\n${text}`
+    : text;
+
+  navigator.clipboard.writeText(finalText).then(() => {
+    if (platform === "google") {
+      window.open("https://share.google/xCCgB05LUcGC60kLf", "_blank");
+    } else {
+      window.open("https://www.tripadvisor.in/Attraction_Review-g27001304-d19460726-Reviews-Discovery_Hike-Purola_Uttarkashi_District_Uttarakhand.html", "_blank");
+    }
+  });
+}
+</script>
+
+</body>
+</html>
